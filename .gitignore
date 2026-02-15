@@ -2,9 +2,13 @@ node_modules
 client/node_modules
 client/dist
 .env
+.env.local
+.env.*.local
 server/data/*.sqlite
 server/data/*.sqlite-*
 *.log
+backup*.sql
+farmsuite_backup*.sql
 
 # Playwright
 /test-results/
