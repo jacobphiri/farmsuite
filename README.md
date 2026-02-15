@@ -61,6 +61,29 @@ Or with docker-compose:
 docker-compose up -d
 ```
 
+## Database
+
+### Local Development
+By default, connects to local MySQL at `localhost:3306` using credentials in `.env`
+
+### Production: Railway Database
+For deployed app, migrate to Railway's free MySQL:
+
+1. See [DATABASE_MIGRATION.md](./DATABASE_MIGRATION.md) for complete guide
+2. Export local database: `scripts/migrate-db.sh`
+3. Import to Railway
+4. Update backend env vars with Railway credentials
+5. Deploy
+
+Quick start:
+```bash
+# Export backup
+cd ReactNative
+./scripts/migrate-db.sh
+
+# Follow instructions to import to Railway
+```
+
 ## Deployment Options
 
 ### Vercel.app (Recommended for Frontend)

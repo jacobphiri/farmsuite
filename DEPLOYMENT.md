@@ -52,16 +52,42 @@ docker-compose up -d
 ```
 Runs at `http://localhost:8080`
 
+## Database Options
+
+### Option 1: Local MySQL (Development)
+- Runs on your machine
+- Use socket connection: `/opt/lampp/var/mysql/mysql.sock`
+- No costs
+- Good for: Local development
+
+### Option 2: Railway MySQL (Production - FREE)
+- Cloud-hosted, no setup needed
+- Free tier includes ~500MB storage
+- Best for: Production apps
+- [See: DATABASE_MIGRATION.md](./DATABASE_MIGRATION.md)
+
+Steps:
+1. Create Railway account
+2. Provision MySQL database
+3. Export local database: `./scripts/migrate-db.sh`
+4. Import to Railway
+5. Update env vars with Railway credentials
+
+### Option 3: PlanetScale (MySQL-Compatible)
+- Alternative to Railway
+- Generous free tier
+- Non-standard port (3306)
+
 ## Environment Variables
 
-### Backend (.env)
+### Backend (.env) - Local Development
 ```env
 PORT=8080
-DB_HOST=your-mysql-host
+DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_NAME=farmsuite
 DB_USER=root
-DB_PASS=your-password
+DB_PASS=
 DB_SOCKET=/opt/lampp/var/mysql/mysql.sock
 JWT_SECRET=your-long-random-secret-key
 JWT_EXPIRES_IN=12h
@@ -69,10 +95,33 @@ CACHE_TTL_SECONDS=45
 LOCAL_DB_PATH=server/data/farmreact_local_cache.sqlite
 ```
 
+### Backend (.env) - Railway Production
+```env
+PORT=8080
+DB_HOST=container-xxx.railway.app
+DB_PORT=6543
+DB_NAME=railway
+DB_USER=root
+DB_PASS=your-railway-password
+DB_SOCKET=
+JWT_SECRET=generate-strong-random-secret
+JWT_EXPIRES_IN=12h
+CACHE_TTL_SECONDS=45
+LOCAL_DB_PATH=server/data/farmreact_local_cache.sqlite
+```
+
 ### Frontend (Vercel Environment Variables)
 ```
-VITE_API_URL=https://your-backend-api.com
+VITE_API_URL=https://your-backend-api.railway.app
 ```
+
+## Database Migration
+
+See [DATABASE_MIGRATION.md](./DATABASE_MIGRATION.md) for detailed instructions on:
+- Exporting local FarmSuite database
+- Importing to Railway
+- Verifying migration success
+- Troubleshooting connection issues
 
 ## Quick Start
 
