@@ -24,6 +24,30 @@ Clean web rebuild of FarmSuite that connects directly to the **main FarmSuite My
   - `POST /api/sync/pull` (pull fresh snapshots from MySQL)
   - `GET /api/sync/status` (MySQL + outbox + local cache stats)
 
+## Quick Deploy
+
+### ✅ Easiest Path: 15 Minutes to Production
+
+Deploy to **Vercel** (frontend) + **Railway** (backend & database):
+
+**[👉 Follow: PRODUCTION_SETUP.md](./PRODUCTION_SETUP.md)** (Recommended)
+
+Steps:
+1. Create Railway MySQL database (2 min)
+2. Deploy backend to Railway (3 min)
+3. Deploy frontend to Vercel (5 min)
+4. Test your live app! (1 min)
+
+**Cost**: $0-5/month on Railway free tier, Vercel is free
+
+### Alternative Paths
+
+- **Vercel Only** (more complex): [VERCEL_SETUP.md](./VERCEL_SETUP.md)
+- **Local Development**: See "Setup" section below
+- **Docker Deployment**: [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+---
+
 ## Setup
 ```bash
 cd /opt/lampp/htdocs/farmsuite/ReactNative
