@@ -1,0 +1,37 @@
+{
+  "name": "farmreacterp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "install:all": "npm install && npm --prefix client install",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "node server/src/index.js",
+    "dev:client": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "parity:report": "node scripts/feature-parity-report.mjs",
+    "parity:smoke": "node scripts/parity-smoke.mjs",
+    "start": "NODE_ENV=production node server/src/index.js",
+    "lint:server": "node --check server/src/index.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^11.8.1",
+    "compression": "^1.8.1",
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "multer": "^2.0.2",
+    "mysql2": "^3.12.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^25.2.3"
+  }
+}

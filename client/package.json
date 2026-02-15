@@ -1,0 +1,24 @@
+{
+  "name": "farmreacterp-client",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.8.2",
+    "bootstrap": "5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-router-dom": "^7.13.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "playwright": "^1.58.2",
+    "vite": "^5.4.12"
+  }
+}
