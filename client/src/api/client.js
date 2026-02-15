@@ -1,7 +1,11 @@
 import axios from 'axios';
 
+// Support VITE_API_URL environment variable for deployed environments
+// Falls back to relative path for development
+const apiUrl = import.meta.env.VITE_API_URL || '/';
+
 const api = axios.create({
-  baseURL: '/',
+  baseURL: apiUrl,
   timeout: 20000
 });
 

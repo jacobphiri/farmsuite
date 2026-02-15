@@ -63,20 +63,41 @@ docker-compose up -d
 
 ## Deployment Options
 
-### Railway.app (Recommended for simplicity)
+### Vercel.app (Recommended for Frontend)
+Frontend-only deployment to Vercel with backend on separate service:
+
 1. Push to GitHub (already done)
+2. Go to https://vercel.app
+3. Create new project → Connect GitHub repo → Import `ReactNative` repo
+4. Configure in dashboard:
+   - **Root Directory**: (leave empty or `.`)
+   - **Framework**: Vite
+   - **Build Command**: `npm --prefix client run build`
+   - **Output Directory**: `client/dist`
+5. Add **Environment Variables**:
+   - `VITE_API_URL` = your backend API URL (e.g., `https://your-railway.com`)
+6. Deploy
+
+**Note**: This deploys only the React frontend. You must deploy the backend separately to Railway, Render, or another Node.js host.
+
+For full architecture details, see [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+### Railway.app (Recommended for Backend)
+1. Push to GitHub
 2. Go to https://railway.app
 3. Create new project → Connect GitHub repo
-4. Railway auto-detects `railway.json` and builds/deploys
-5. Add environment variables in dashboard:
+4. Railway auto-detects `railway.json` and deploys Node.js app
+5. Add environment variables:
    - `DB_HOST` (your MySQL host)
    - `DB_PORT` (3306)
    - `DB_NAME` (farmsuite)
    - `DB_USER` (your user)
    - `DB_PASS` (your password)
    - `JWT_SECRET` (generate random 32+ char string)
+6. Deploy
+7. Copy the deployment URL and add as `VITE_API_URL` on Vercel
 
-### Render.com
+### Render.com (Alternative Backend)
 1. Push to GitHub
 2. Go to https://render.com
 3. Create new "Web Service"
@@ -85,10 +106,20 @@ docker-compose up -d
 6. Set start command: `npm start`
 7. Add environment variables (same as Railway)
 
+### Netlify (Alternative Frontend)
+Similar to Vercel, but for frontend only:
+1. Go to https://netlify.com
+2. Connect GitHub repo
+3. Build command: `npm --prefix client run build`
+4. Publish directory: `client/dist`
+5. Add env var: `VITE_API_URL`
+
 ### Self-hosted Docker
 1. Build image: `docker build -t farmsuite .`
 2. Run container with appropriate env vars
 3. Ensure MySQL from FarmSuite is accessible
+
+For full deployment architecture, see [DEPLOYMENT.md](./DEPLOYMENT.md)
 
 ## Environment Variables
 See `.env.example`:
